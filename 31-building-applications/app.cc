@@ -23,8 +23,19 @@ AppWindow* App::create_appwindow()
 
 void App::on_activate()
 {
-  auto appwindow = create_appwindow();
-  appwindow->present();
+  try 
+  {
+    auto appwindow = create_appwindow();
+    appwindow->present();
+  }
+  catch (const Glib::Error& ex) 
+  {
+    std::cerr < "App::on_open(): " << ex.what() << std::endl;
+  } 
+  catch (const std::exception& ex) 
+  {
+    std::cerr < "App::on_open(): " << ex.what() << std::endl;
+  }
 }
 
 void App::on_open(const Gio::Application::type_vec_files& files, const Glib::ustring& hint)
@@ -36,13 +47,24 @@ void App::on_open(const Gio::Application::type_vec_files& files, const Glib::ust
   if (windows.size() > 0)
     appwindow = dynamic_cast<AppWindow*>(windows[0]);
 
-  if (!appwindow)
-    appwindow = create_appwindow();
+  try 
+  {
+    if (!appwindow)
+      appwindow = create_appwindow();
 
-  for (const auto& file : files)
-    appwindow->open_file_view(file);
+    for (const auto& file : files)
+      appwindow->open_file_view(file);
 
-  appwindow->present();
+    appwindow->present();
+  }
+  catch (const Glib::Error& ex) 
+  {
+    std::cerr < "App::on_open(): " << ex.what() << std::endl;
+  } 
+  catch (const std::exception& ex) 
+  {
+    std::cerr < "App::on_open(): " << ex.what() << std::endl;
+  }
 }
 
 void App::on_hide_window(Gtk::Window* window)
