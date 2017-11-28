@@ -19,6 +19,8 @@ EntryProgress::EntryProgress() :
   m_button_close.set_can_default();
   m_button_close.grab_default();
 
+  m_vbox.pack_start(m_button_close, Gtk::PACK_SHRINK);
+
   show_all_children();
 }
 
