@@ -1,10 +1,7 @@
 #ifndef GTKMM_ENTRYPROGRESS_H
 #define GTKMM_ENTRYPROGRESS_H
 
-#include <gtkmm/window.h>
-#include <gtkmm/box.h>
-#include <gtkmm/entry.h>
-#include <gtkmm/button.h>
+#include <gtkmm.h>
 
 class EntryProgress : public Gtk::Window
 {
