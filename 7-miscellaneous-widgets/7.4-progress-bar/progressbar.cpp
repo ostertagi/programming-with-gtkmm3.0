@@ -12,6 +12,8 @@ ProgressBar::ProgressBar() :
   set_resizable();
   set_title("Gtk::ProgressBar");
 
+  add(vbox);
+
   vbox.set_border_width(5);
   vbox.pack_start(progress_bar, Gtk::PACK_SHRINK, 5);
 
@@ -30,11 +32,11 @@ ProgressBar::ProgressBar() :
   checkbtn_text.property_margin() = 5;
   checkbtn_text.signal_clicked().connect(sigc::mem_fun(*this, &ProgressBar::on_checkbutton_text));
 
-  grid.attach(checkbtn_activity, 0, 0, 1, 1);
+  grid.attach(checkbtn_activity, 0, 1, 1, 1);
   checkbtn_activity.property_margin() = 5;
   checkbtn_activity.signal_clicked().connect(sigc::mem_fun(*this, &ProgressBar::on_checkbutton_activity));
 
-  grid.attach(checkbtn_inverted, 0, 0, 1, 1);
+  grid.attach(checkbtn_inverted, 0, 2, 1, 1);
   checkbtn_inverted.property_margin() = 5;
   checkbtn_inverted.signal_clicked().connect(sigc::mem_fun(*this, &ProgressBar::on_checkbutton_inverted));
 
@@ -85,4 +87,6 @@ bool ProgressBar::on_timeout()
     
     progress_bar.set_fraction(new_val);
   }
+
+  return true;
 }

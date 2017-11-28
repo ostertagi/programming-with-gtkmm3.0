@@ -2,7 +2,6 @@
 #define GTKMM_PROGRESSBAR_H
 
 #include <gtkmm.h>
-#include <map>
 
 class ProgressBar : public Gtk::Window
 {
